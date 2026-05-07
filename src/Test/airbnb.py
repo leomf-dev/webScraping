@@ -2,6 +2,8 @@ from time import sleep
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
@@ -18,8 +20,10 @@ driver = webdriver.Chrome(
 
 driver.get('https://www.airbnb.com/')
 
-sleep(6)
+sleep(3)
 
-titulos = driver.find_elements(By.XPATH, '//div[@data-testid="listing-card-title"]')
+titulos = WebDriverWait(driver, 10).until(
+    EC.presence_of_all_elements_located((By.XPATH, '//div[@data-testid="listing-card-title"]'))
+)
 for titulo in titulos:
     print(titulo.text)
