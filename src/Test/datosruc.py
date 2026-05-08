@@ -48,8 +48,8 @@ try:
     codigo_tabla = tabla_elemento.get_attribute('outerHTML')
 
     carpeta = "descargas_sunat"
-    #if not os.path.exists(carpeta):
-    #    os.makedirs(carpeta)
+    if not os.path.exists(carpeta):
+        os.makedirs(carpeta)
 
     ruta_archivo = os.path.join(carpeta, "resultado_ruc.html")
     with open(ruta_archivo, "w", encoding="utf-8") as f:
